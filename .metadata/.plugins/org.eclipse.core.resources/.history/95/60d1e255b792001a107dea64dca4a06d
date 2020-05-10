@@ -1,0 +1,76 @@
+package dsalgo.bst;
+
+public class Node {
+
+	private Node leftNode;
+	private int value;
+	private Node rightNode;
+
+	public Node(int value) {
+		this.value = value;
+	}
+
+	public Node getLeftNode() {
+		return leftNode;
+	}
+
+	public void setLeftNode(Node leftNode) {
+		this.leftNode = leftNode;
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+	}
+
+	public Node getRightNode() {
+		return rightNode;
+	}
+
+	public void setRightNode(Node rightNode) {
+		this.rightNode = rightNode;
+	}
+
+	public void addValue(int value) {
+		if (this.value < value) {
+			// go right
+			if (this.leftNode != null) {
+				this.leftNode.addValue(value);
+			} else {
+				this.leftNode = new Node(value);
+			}
+		} else {
+			// go left
+			if (this.rightNode != null) {
+				this.rightNode.addValue(value);
+			} else {
+				this.rightNode = new Node(value);
+			}
+		}
+	}
+	
+	public void printNodeDetails() {
+		System.out.println(String.format("Node Value %d", this.value));
+		System.out.println("Left Node Details");
+		if(this.leftNode != null) {
+			this.leftNode.printNodeDetails();
+		} else {
+			System.out.println("Doesn't have any left node");
+		}
+		System.out.println("Right Node Details");
+		if(this.rightNode != null) {
+			this.rightNode.printNodeDetails();
+		} else {
+			System.out.println("Doesn't have any right node");
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Node [leftNode=" + leftNode + ", value=" + value + ", rightNode=" + rightNode + "]";
+	}
+
+}

@@ -1,0 +1,21 @@
+package dsalgo.bst;
+
+public class Tree {
+
+	private Node node;
+	
+	
+	public Tree(int value) {
+		this.node = new Node(value);
+	}
+
+
+	public Node getNode() {
+		return node;
+	}
+
+
+	public void setNode(Node node) {
+		this.node = node;
+	}
+}

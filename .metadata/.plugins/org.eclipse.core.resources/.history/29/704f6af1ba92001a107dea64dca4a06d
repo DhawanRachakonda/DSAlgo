@@ -1,0 +1,39 @@
+package dsalgo.bst;
+
+public class SiblingTree extends Node{
+	
+	private int parent;
+
+	public SiblingTree(int value, int parent) {
+		super(value);
+		this.parent = parent;
+	}
+	
+	public int getParent() {
+		return parent;
+	}
+
+	public void setParent(int parent) {
+		this.parent = parent;
+	}
+
+	@Override
+	public void addValue(int value) {
+		if (this.value > value) {
+			// go left
+			if (this.leftNode != null) {
+				this.leftNode.addValue(value);
+			} else {
+				this.leftNode = new SiblingTree(value, this.value);
+			}
+		} else {
+			// go right
+			if (this.rightNode != null) {
+				this.rightNode.addValue(value);
+			} else {
+				this.rightNode = new SiblingTree(value, this.value);
+			}
+		}
+	}
+
+}

@@ -1,0 +1,24 @@
+package dsalgo.bst;
+
+import java.util.Arrays;
+
+public class TreeClient {
+
+	private static Tree tree;
+
+	public static void main(String args[]) {
+
+		int[] nums = new int[] { 4, 5, 6, 11, 7, 2, 8, 3, 9, 1 };
+
+		tree = new Tree();
+
+		Arrays.stream(nums).map(eachNumber -> {
+			tree.addValue(eachNumber);
+			return eachNumber;
+		});
+		
+		System.out.println(tree.toString());
+
+	}
+
+}
