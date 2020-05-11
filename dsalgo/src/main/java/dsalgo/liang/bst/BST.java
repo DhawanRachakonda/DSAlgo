@@ -71,7 +71,10 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
 			parent = current;
 		}
 		
-		if(current.leftNode == null) {
+		if(current == null) {
+			isDeleted = false;
+		}
+		else if(current.leftNode == null) {
 			// element is to be deleted
 			if(parent != null) {
 				if(e.compareTo(parent.value) < 0) {
@@ -104,8 +107,10 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
 			if(parentOfRightestNode.rightNode == rightNode) {
 				parentOfRightestNode.rightNode = rightNode.leftNode;
 			} else {
+				// current == parent special case
 				parentOfRightestNode.leftNode = rightNode.leftNode;
 			}
+			isDeleted = true;
 		}
 		this.size--;
 		return isDeleted;
