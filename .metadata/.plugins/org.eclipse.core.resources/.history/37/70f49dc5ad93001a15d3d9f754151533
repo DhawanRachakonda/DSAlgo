@@ -1,0 +1,5 @@
+package dsalgo.liang.bst;
+
+public class BST<E extends Comparable<E>> extends AbstractTree<E> {
+
+}

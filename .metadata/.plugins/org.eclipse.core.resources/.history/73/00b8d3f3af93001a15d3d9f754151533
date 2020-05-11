@@ -1,0 +1,9 @@
+package dsalgo.liang.bst;
+
+public class Node<E> {
+
+	protected Node<E> leftNode;
+	protected E value;
+	protected Node<E> rightNode;
+	
+}

@@ -1,0 +1,5 @@
+package dsalgo.liang.bst;
+
+public interface Tree {
+
+}
