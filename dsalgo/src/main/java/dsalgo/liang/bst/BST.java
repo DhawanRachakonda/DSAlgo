@@ -8,7 +8,9 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
 	private int size = 0;
 	
 	public BST(E[] elements) {
-		
+		for (int i=0; i<elements.length; i++) {
+			this.insert(elements[i]);
+		}
 	}
 	
 	public BST() {
@@ -17,8 +19,24 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
 
 	@Override
 	public boolean search(E e) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean isPresent = false;
+		Node<E> current = null;
+		
+		while(current != null) {
+			if(e.compareTo(current.value) == 0) {
+				isPresent = true;
+				break;
+			}
+			if(e.compareTo(current.value) < 0) {
+				// go left
+				current = current.leftNode;
+			} else if(e.compareTo(current.value) > 0) {
+				// go right
+				current = current.rightNode;
+			}
+		}
+		
+		return isPresent;
 	}
 
 	@Override
