@@ -74,7 +74,11 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
 		if(current.leftNode == null) {
 			// element is to be deleted
 			if(parent != null) {
-				parent.leftNode = current.rightNode;
+				if(e.compareTo(parent.value) < 0) {
+					parent.leftNode = current.rightNode;
+				} else {
+					parent.rightNode = current.rightNode;
+				}
 				isDeleted = true;
 			} else {
 				root = current.rightNode;
@@ -97,8 +101,10 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
 			current.value = rightNode.value;
 			
 			// Detach phase
-			if(rightNode.leftNode != null) {
+			if(parentOfRightestNode.rightNode == rightNode) {
 				parentOfRightestNode.rightNode = rightNode.leftNode;
+			} else {
+				parentOfRightestNode.leftNode = rightNode.leftNode;
 			}
 		}
 		this.size--;
@@ -125,14 +131,12 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
 
 	@Override
 	public int getSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.size;
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		this.root = null;
 	}
 
 	@Override
