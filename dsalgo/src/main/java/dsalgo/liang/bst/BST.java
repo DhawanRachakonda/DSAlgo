@@ -53,7 +53,56 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
 	@Override
 	public boolean delete(E e) {
 		
-		return false;
+		Node<E> current = this.root;
+		Node<E> parent = null;
+		boolean isDeleted = false;
+		
+		while(current != null) {
+			if(current.value.compareTo(e) == 0) {
+				break;
+			}
+			if(e.compareTo(current.value) < 0) {
+				// go left;
+				current = current.leftNode;
+			} else if(e.compareTo(current.value) > 0) {
+				// go right;
+				current = current.rightNode;
+			}
+			parent = current;
+		}
+		
+		if(current.leftNode == null) {
+			// element is to be deleted
+			if(parent != null) {
+				parent.leftNode = current.rightNode;
+				isDeleted = true;
+			} else {
+				root = current.rightNode;
+			}
+			
+		} else {
+			// Follow any one approach
+			// in order predecessor(highest) - Follow this
+			// in order successor(least)
+			
+			Node<E> rightNode = current.leftNode;
+			Node<E> parentOfRightestNode = current;
+			
+			while(rightNode.rightNode != null) {
+				parentOfRightestNode = rightNode;
+				rightNode = rightNode.rightNode;
+			}
+			
+			// replace value
+			current.value = rightNode.value;
+			
+			// Detach phase
+			if(rightNode.leftNode != null) {
+				parentOfRightestNode.rightNode = rightNode.leftNode;
+			}
+		}
+		this.size--;
+		return isDeleted;
 	}
 
 	@Override
