@@ -20,7 +20,7 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
 	@Override
 	public boolean search(E e) {
 		boolean isPresent = false;
-		Node<E> current = null;
+		Node<E> current = this.root;
 		
 		while(current != null) {
 			if(e.compareTo(current.value) == 0) {
@@ -52,7 +52,7 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
 
 	@Override
 	public boolean delete(E e) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
